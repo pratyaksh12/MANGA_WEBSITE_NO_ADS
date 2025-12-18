@@ -65,7 +65,7 @@ namespace Backend.Controller
             try
             {
                 var json = await _mangadexService.GetMangaChapteAsync(id);
-                return Content(json, "appllication/json");
+                return Content(json, "application/json");
                 
             }
             catch (HttpRequestException ex)

@@ -48,7 +48,7 @@ export interface Manga{
     id: string;
     type: 'manga';
     attributes: MangaAttributes;
-    relattionships: Relationship[];
+    relationships: Relationship[];
 }
 
 export interface MangaListResponse{
