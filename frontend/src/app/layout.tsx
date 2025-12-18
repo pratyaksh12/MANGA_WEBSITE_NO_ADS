@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "MangaDex Clone",
+  title: "I'll see what I'll call it",
   description: "Your personal manga library",
 };
 
