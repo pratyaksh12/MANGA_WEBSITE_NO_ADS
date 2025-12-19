@@ -1,5 +1,6 @@
 import { api } from "@/lib/api";
 import { FocusCards } from "@/components/ui/focus-cards";
+import Button from "@/components/ui/custom-button";
 
 export default async function Home(){
   const popularMangas = await api.getPopularManga(12, 0);
@@ -22,9 +23,7 @@ export default async function Home(){
 
           <div className="flex items-center justify-between mb-6">
             <h2 className="text-2xl font-bold text-white">Popular 🔥</h2>
-            <button className="text-sm font-medium text-red-500 hover:text-red-400">
-              View all &rarr;
-            </button>
+            <Button message="View All" href="/"/>
           </div>
 
           <div className="w-full">
