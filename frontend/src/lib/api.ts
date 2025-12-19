@@ -1,4 +1,4 @@
-import { Manga, MangaListResponse } from "./types";
+import { Chapter, ChapterListResponse, Manga, MangaListResponse } from "./types";
 import axios from "axios";
 
 const client = axios.create({
@@ -22,5 +22,17 @@ export const api = {
     },
     getTitle(manga: Manga): string{
         return manga.attributes.title.en || Object.values(manga.attributes.title)[0] || 'untitled';
+    },
+    async getManga(mangaId: string): Promise<Manga>{
+        const response = await client.get<{data: Manga}>(`/manga/${mangaId}/feed`);
+        return response.data.data;
+    },
+    async getChapters(mangaId: string, limit:number = 100, offset:number = 0): Promise<Chapter[]>{
+        const response = await client.get<ChapterListResponse>(`/manga/${mangaId}/feed`, {
+            params: {
+                limit, offset, 'translatedLanguage[]': 'en', order: {chapter: 'desc'}
+            }
+        });
+        return response.data.data;
     }
 };
