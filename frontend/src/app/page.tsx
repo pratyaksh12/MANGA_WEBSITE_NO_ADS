@@ -20,13 +20,9 @@ export default async function Home() {
                 BAD AT NAMING THINGS
             </h1>
             
-            <p className="text-neutral-400 text-base md:text-lg max-w-xl mx-auto leading-relaxed mb-8">
+            <p className="text-neutral-400 text-base md:text-lg max-w-xl mx-auto leading-relaxed">
                 Your personal, pristine manga library. Reading without distractions.
             </p>
-
-            <div className="flex gap-4">
-               <Button message="Start Reading" href="#popular" />
-            </div>
         </div>
       </section>
 
