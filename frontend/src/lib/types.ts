@@ -1,20 +1,20 @@
-export interface LocalizedString{
-    [key:string] : string;
+export interface LocalizedString {
+    [key: string]: string;
 }
 
-export interface TagAttributes{
+export interface TagAttributes {
     name: LocalizedString;
     group: string;
     version: number;
 }
 
-export interface Tag{
+export interface Tag {
     id: string;
     type: 'tag';
     attributes: TagAttributes;
 }
 
-export interface MangaAttributes{
+export interface MangaAttributes {
     title: LocalizedString;
     altTitles: LocalizedString[];
     description: LocalizedString;
@@ -31,27 +31,27 @@ export interface MangaAttributes{
     createdAt: string;
     updatedAt: string;
     availableTranslatedLanguages: string[];
-    latestUploadedChapter:string;
+    latestUploadedChapter: string;
 }
 
-export interface Relationship{
+export interface Relationship {
     id: string;
     type: 'author' | 'artist' | 'cover_art' | 'manga' | 'scanlation_group' | 'user';
     related?: string;
     attributes?: {
         fileName?: string;
-        [key: string]:any;
+        [key: string]: any;
     };
 }
 
-export interface Manga{
+export interface Manga {
     id: string;
     type: 'manga';
     attributes: MangaAttributes;
     relationships: Relationship[];
 }
 
-export interface MangaListResponse{
+export interface MangaListResponse {
     result: string;
     response: string;
     data: Manga[];
@@ -60,7 +60,7 @@ export interface MangaListResponse{
     total: number;
 }
 
-export interface ChapterAttributes{
+export interface ChapterAttributes {
     volume: string;
     chapter: string;
     title: string;
@@ -74,18 +74,27 @@ export interface ChapterAttributes{
     version: number;
 }
 
-export interface Chapter{
+export interface Chapter {
     id: string;
     type: 'chapter';
     attributes: ChapterAttributes;
     relationships: Relationship[];
 }
 
-export interface ChapterListResponse{
+export interface ChapterListResponse {
     result: string;
     response: string;
     data: Chapter[];
     limit: number;
     offset: number;
     total: number;
+}
+
+export interface ChapterPagesResponse {
+    baseUrl: string;
+    chapter: {
+        hash: string;
+        data: string[];
+        dataSaver: string[];
+    }
 }

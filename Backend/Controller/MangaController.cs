@@ -74,5 +74,24 @@ namespace Backend.Controller
             }
 
         }
+
+        [HttpGet("chapter/{chapterId}")]
+        public async Task<IActionResult> GetChapterPages(string chapterId)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest();
+            }
+
+            try
+            {
+                var json = await _mangadexService.GetChapterPagesAsync(chapterId);
+                return Content(json, "application/json");
+            }
+            catch (HttpRequestException ex)
+            {
+                return NotFound(ex.Message);
+            }
+        }
     }
 }

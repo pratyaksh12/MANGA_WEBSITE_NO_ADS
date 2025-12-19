@@ -1,4 +1,4 @@
-import { Chapter, ChapterListResponse, Manga, MangaListResponse } from "./types";
+import { Chapter, ChapterListResponse, Manga, MangaListResponse, ChapterPagesResponse } from "./types";
 import axios from "axios";
 
 const client = axios.create({
@@ -21,7 +21,7 @@ export const api = {
         return `https://uploads.mangadex.org/covers/${manga.id}/${fileName}`;
     },
     getTitle(manga: Manga): string {
-        return manga.attributes.title.en || Object.values(manga.attributes.title)[0] || 'untitled';
+        return manga.attributes.title.en || Object.values(manga.attributes.altTitles[1])[0] || 'untitled';
     },
     async getManga(mangaId: string): Promise<Manga> {
         const response = await client.get<{ data: Manga }>(`/manga/${mangaId}`);
@@ -30,5 +30,10 @@ export const api = {
     async getChapters(mangaId: string): Promise<Chapter[]> {
         const response = await client.get<ChapterListResponse>(`/manga/${mangaId}/chapters`);
         return response.data.data;
+    },
+    async getChapterPages(chapterId: string): Promise<string[]> {
+        const response = await client.get<ChapterPagesResponse>(`/manga/chapter/${chapterId}`);
+        const { baseUrl, chapter: { hash, data } } = response.data;
+        return data.map((fileName) => `${baseUrl}/data/${hash}/${fileName}`);
     }
 };

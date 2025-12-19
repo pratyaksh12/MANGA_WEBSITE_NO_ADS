@@ -39,4 +39,11 @@ public class MangadexService
         response.EnsureSuccessStatusCode();
         return await response.Content.ReadAsStringAsync();
     }
+
+    public async Task<string> GetChapterPagesAsync(string chapterId)
+    {
+        var response = await _httpClient.GetAsync($"/at-home/server/{chapterId}");
+        response.EnsureSuccessStatusCode();
+        return await response.Content.ReadAsStringAsync();
+    }
 }
