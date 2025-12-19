@@ -3,6 +3,7 @@ import Image from "next/image";
 import Link from "next/link";
 import Button from "@/components/ui/custom-button";
 import BackButton from "@/components/ui/back-button";
+import MangaInitializer from "@/components/MangaInitializer";
 
 
 export default async function MangaPage({params}: {params: Promise<{id: string}>}){
@@ -44,8 +45,8 @@ export default async function MangaPage({params}: {params: Promise<{id: string}>
 
     return(
         <>
+            <MangaInitializer manga={manga} chapters={chapters} />
             <div className="min-h-screen bg-neutral-950 text-white selection:bg-red-500/30 pb-20">
-                {/* Floating Back Button */}
                 <div className="absolute top-6 left-6 z-50">
                     <BackButton message="Back" href="/" />
                 </div>

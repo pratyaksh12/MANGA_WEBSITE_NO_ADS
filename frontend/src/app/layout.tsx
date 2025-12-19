@@ -7,6 +7,8 @@ export const metadata: Metadata = {
   description: "Your personal manga library",
 };
 
+import { MangaProvider } from "@/context/MangaContext";
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -15,17 +17,19 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className="antialiased">
-        <StaggeredMenu 
-          isFixed={true}
-          displayItemNumbering={false}
-          items={[
-            { label: "Home", link: "/", ariaLabel: "Go to Home" },
-            { label: "Popular", link: "/", ariaLabel: "View Popular" },
-            { label: "Bookmarks", link: "/bookmarks", ariaLabel: "View Bookmarks" },
-            { label: "History", link: "/history", ariaLabel: "View History" },
-          ]}
-        />
-        {children}
+        <MangaProvider>
+            <StaggeredMenu 
+            isFixed={true}
+            displayItemNumbering={false}
+            items={[
+                { label: "Home", link: "/", ariaLabel: "Go to Home" },
+                { label: "Popular", link: "/", ariaLabel: "View Popular" },
+                { label: "Bookmarks", link: "/bookmarks", ariaLabel: "View Bookmarks" },
+                { label: "History", link: "/history", ariaLabel: "View History" },
+            ]}
+            />
+            {children}
+        </MangaProvider>
       </body>
     </html>
   );
