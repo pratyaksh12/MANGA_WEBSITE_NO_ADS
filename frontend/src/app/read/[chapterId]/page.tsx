@@ -5,6 +5,7 @@ import BackButton from "@/components/ui/back-button";
 import { useManga } from '@/context/MangaContext';
 import { useRouter } from 'next/navigation';
 import Link from 'next/link';
+import OrbitLoader from '@/components/ui/orbit-loader';
 
 export default function ReadPage({ params }: { params: Promise<{ chapterId: string }> }) {
     
@@ -49,7 +50,7 @@ function ReaderContent({ params }: { params: Promise<{ chapterId: string }> }) {
     const prevChapter = currentIndex > 0 ? chapterList[currentIndex - 1] : null;
 
     if (loading) {
-        return <div className="min-h-screen bg-neutral-950 flex items-center justify-center text-white">Loading...</div>
+        return <div className="min-h-screen bg-neutral-950 flex items-center justify-center text-white"><OrbitLoader /></div>
     }
 
     if (error) {

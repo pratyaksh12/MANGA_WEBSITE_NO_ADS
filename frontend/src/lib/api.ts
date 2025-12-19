@@ -21,7 +21,12 @@ export const api = {
         return `https://uploads.mangadex.org/covers/${manga.id}/${fileName}`;
     },
     getTitle(manga: Manga): string {
-        return manga.attributes.title.en || Object.values(manga.attributes.altTitles[1])[0] || 'untitled';
+        if (manga.attributes.title.en) return manga.attributes.title.en;
+
+        const altTitleEn = manga.attributes.altTitles.find((t) => t.en);
+        if (altTitleEn) return altTitleEn.en;
+
+        return Object.values(manga.attributes.title)[0] || 'Untitled';
     },
     async getManga(mangaId: string): Promise<Manga> {
         const response = await client.get<{ data: Manga }>(`/manga/${mangaId}`);

@@ -98,7 +98,7 @@ export default async function MangaPage({params}: {params: Promise<{id: string}>
                             <h2 className="text-2xl font-bold mb-4 flex items-center gap-2 flex-shrink-0 px-1">
                                 Chapters <span className="text-sm font-normal text-neutral-500">({chapters.length})</span>
                             </h2>
-                            <div className="grid gap-2 overflow-y-auto flex-1 pb-20 pr-2 scrollbar-thin scrollbar-thumb-neutral-800 scrollbar-track-transparent">
+                            <div className="flex flex-col gap-2 overflow-y-auto flex-1 pb-20 pr-2 scrollbar-thin scrollbar-thumb-neutral-800 scrollbar-track-transparent">
                                 {chapters.map((chapter) =>(
                                     <Link 
                                         key={chapter.id}
