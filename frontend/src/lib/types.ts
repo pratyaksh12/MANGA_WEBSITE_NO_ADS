@@ -59,3 +59,33 @@ export interface MangaListResponse{
     offset: number;
     total: number;
 }
+
+export interface ChapterAttributes{
+    volume: string;
+    chapter: string;
+    title: string;
+    translatedLanguages: string;
+    externalUrl: string | null;
+    publishAt: string;
+    readableAt: string;
+    createdAt: string;
+    updatedAt: string;
+    pages: number;
+    version: number;
+}
+
+export interface Chapter{
+    id: string;
+    type: 'chapter';
+    attributes: ChapterAttributes;
+    relationships: Relationship[];
+}
+
+export interface ChapterListResponse{
+    result: string;
+    response: string;
+    data: Chapter[];
+    limit: number;
+    offset: number;
+    total: number;
+}
