@@ -64,7 +64,7 @@ export interface ChapterAttributes{
     volume: string;
     chapter: string;
     title: string;
-    translatedLanguages: string;
+    translatedLanguage: string;
     externalUrl: string | null;
     publishAt: string;
     readableAt: string;

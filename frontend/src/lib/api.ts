@@ -24,7 +24,7 @@ export const api = {
         return manga.attributes.title.en || Object.values(manga.attributes.title)[0] || 'untitled';
     },
     async getManga(mangaId: string): Promise<Manga>{
-        const response = await client.get<{data: Manga}>(`/manga/${mangaId}/feed`);
+        const response = await client.get<{data: Manga}>(`/manga/${mangaId}`);
         return response.data.data;
     },
     async getChapters(mangaId: string, limit:number = 100, offset:number = 0): Promise<Chapter[]>{
