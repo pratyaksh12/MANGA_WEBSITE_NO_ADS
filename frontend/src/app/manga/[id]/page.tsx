@@ -2,12 +2,29 @@ import { api } from "@/lib/api";
 import Image from "next/image";
 import Link from "next/link";
 import Button from "@/components/ui/custom-button";
-import { div, main, span } from "framer-motion/client";
 
-export default async function MangaPage({params}: {params: {id: string}}){
-    const {id} = params;
-    const manga = await api.getManga(id);
-    const chapters = await api.getChapters(id);
+
+export default async function MangaPage({params}: {params: Promise<{id: string}>}){
+    const { id } = await params;
+    console.log(`[MangaPage] Fetching details for ID: ${id}`);
+    
+    let manga, chapters;
+    try {
+        manga = await api.getManga(id);
+        chapters = await api.getChapters(id);
+    } catch (error) {
+        console.error(`[MangaPage] Error fetching data for ${id}:`, error);
+        return (
+            <div className="min-h-screen bg-neutral-950 text-white flex items-center justify-center">
+                <div className="text-center p-8 bg-neutral-900 rounded-xl border border-neutral-800">
+                    <h1 className="text-2xl font-bold mb-4 text-red-500">Error Loading Manga</h1>
+                    <p className="text-neutral-400 mb-6">Could not fetch details for this manga.</p>
+                    <p className="text-xs text-neutral-600 font-mono mb-6">ID: {id}</p>
+                    <Button message="Go Home" href="/" />
+                </div>
+            </div>
+        );
+    }
 
     const title = api.getTitle(manga);
     const cover = api.getCoverImage(manga);
