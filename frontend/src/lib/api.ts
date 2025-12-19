@@ -40,5 +40,10 @@ export const api = {
         const response = await client.get<ChapterPagesResponse>(`/manga/chapter/${chapterId}`);
         const { baseUrl, chapter: { hash, data } } = response.data;
         return data.map((fileName) => `${baseUrl}/data/${hash}/${fileName}`);
+    },
+    async searchManga(query: string): Promise<Manga[]> {
+        if (!query) return [];
+        const response = await client.get<MangaListResponse>(`/manga/search/${encodeURIComponent(query)}`);
+        return response.data.data;
     }
 };

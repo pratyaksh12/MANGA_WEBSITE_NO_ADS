@@ -23,6 +23,7 @@ export default function RootLayout({
             displayItemNumbering={false}
             items={[
                 { label: "Home", link: "/", ariaLabel: "Go to Home" },
+                { label: "Search", link: "/search", ariaLabel: "Search Manga" },
                 { label: "Popular", link: "/", ariaLabel: "View Popular" },
                 { label: "Bookmarks", link: "/bookmarks", ariaLabel: "View Bookmarks" },
                 { label: "History", link: "/history", ariaLabel: "View History" },

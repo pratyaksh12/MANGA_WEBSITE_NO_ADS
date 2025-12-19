@@ -93,5 +93,19 @@ namespace Backend.Controller
                 return NotFound(ex.Message);
             }
         }
+
+        [HttpGet("search/{query}")]
+        public async Task<IActionResult> SearchManga(string query)
+        {
+            try
+            {
+                var json = await _mangadexService.SearchMangaAsync(query);
+                return Content(json, "application/json");
+            }
+            catch (HttpRequestException ex)
+            {
+                return StatusCode(503, "Error searching manga: " + ex.Message);
+            }
+        }
     }
 }
